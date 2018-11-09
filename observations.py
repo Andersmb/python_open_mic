@@ -4,7 +4,7 @@ import pandas
 obs = {
     'forest': ['cow', 'sheep', 'sheep', 'pig', 'sheep'],
     'plains': ['cow', 'horse', 'horse', 'sheep', 'horse'],
-    'jungle': ['cow', 'ocelot', 'parrot', 'sheep', 'parrot'],
+    'jungle': ['cat', 'turtle', 'dinosaur', 'cow', 'ocelot', 'parrot', 'sheep', 'parrot'],
 }
 
 # make new dict for number of unique observations in each biome
@@ -68,4 +68,18 @@ if parrot_test == [False, False, True]:
 	print("Parrot(s) were only observed in the jungle.")
 else:
 	print("Parrot(s) were not only observed in the jungle.")
+
+# evaluate which species are found in the jungle but not in plains or forest
+# first identify the unique species in jungle
+jungle_unique = set(obs["jungle"])
+notjungle = [biome for biome in obs.keys() if biome != "jungle"]
+notjungle_unique = [[animal for animal in obs[biome]] for biome in notjungle]
+notjungle_unique = set(notjungle_unique[0] + notjungle_unique[1])
+
+jungle_only = []
+for animal in jungle_unique:
+	if animal not in notjungle_unique:
+		jungle_only.append(animal)
+
+print(f"Animals observed only in the jungle: {', '.join(jungle_only)}")
 
