@@ -44,9 +44,14 @@ def freq(string):
 		for w in set(words):
 			if i == words.count(w):
 				topfivewords.append([i,w])
+	topfivechars = []
+	for i in max_char_count[0:5]:
+		for c in set(chars):
+			if i == chars.count(c):
+				topfivechars.append([i,c])
 				
 
-	print(topfivewords)
+	print(topfivewords, topfivechars)
 
 
 
