@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import numpy as np
+
 def freq(string):
 	# define the most common punctuation marks
 	punctuation = ".,:;-_'´`<>!\"#$%&/()=?@*¨^§"
@@ -14,7 +16,7 @@ def freq(string):
 				words[i] = ''.join(w.split(p))
 	
 	# get string of characters only
-	chars = ''.join(words)	
+	chars = ''.join(words)
 
 	word_count = []
 	counted_words = []
@@ -33,11 +35,20 @@ def freq(string):
 		char_count.append(chars.count(c))
 		counted_chars.append(c)
 
-	for i in range(len(counted_words)):
-		print(word_count[i], counted_words[i])
-	
-	for i in range(len(counted_chars)):
-		print(char_count[i], counted_chars[i])
+	# now look for the 5 highest counts, and extract all words and characters with those counts
+	max_word_count = list(reversed(sorted(word_count)))
+	max_char_count = list(reversed(sorted(char_count)))
+
+	topfivewords = []
+	for i in max_word_count[0:5]:
+		for w in set(words):
+			if i == words.count(w):
+				topfivewords.append([i,w])
+				
+
+	print(topfivewords)
+
+
 
 	return None
 
