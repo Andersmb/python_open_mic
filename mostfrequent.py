@@ -51,11 +51,8 @@ def freq(string):
 				topfivechars.append([i,c])
 				
 
-	print(topfivewords, topfivechars)
 
-
-
-	return None
+	return topfivewords, topfivechars
 
 
 poem = """For E’er and Hair.
@@ -115,4 +112,33 @@ poem = """For E’er and Hair.
     She will answer, “All right, sir, I’m going,
       But you _must_ let me finish my hair!”
 """
-print(freq(poem))
+
+f = freq(poem)
+w,c = f[0], f[1]
+
+print("Word \t Frequency")
+
+for i in range(len(w)):
+	print(f"{w[i][1]} \t {w[i][0]}")
+
+print("")
+
+print("Character \t Frequency")
+
+for i in range(len(c)):
+	print(f"{c[i][1]} \t\t {c[i][0]}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
