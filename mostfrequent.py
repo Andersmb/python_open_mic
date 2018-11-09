@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 
 import numpy as np
+import pandas
+import sys
 
 def freq(string):
+	# how words and characters to show?
+	num = int(sys.argv[1])
+
 	# define the most common punctuation marks
 	punctuation = ".,:;-_'´`<>!\"#$%&/()=?@*¨^§"
 
@@ -25,34 +30,40 @@ def freq(string):
 	
 	# now count all unique words in words
 	# and collect them
-	for idx,w in enumerate(set(words)):
+	for w in set(words):
 		word_count.append(words.count(w))
 		counted_words.append(w)
 
 	# now count all unique characters in chars
 	# and collect them
-	for idx,c in enumerate(set(chars)):
+	for c in set(chars):
 		char_count.append(chars.count(c))
 		counted_chars.append(c)
 
-	# now look for the 5 highest counts, and extract all words and characters with those counts
-	max_word_count = list(reversed(sorted(word_count)))
-	max_char_count = list(reversed(sorted(char_count)))
+	# now look for the 'num' highest counts, and extract all words and characters with those counts
+	max_word_count = list(reversed(sorted(word_count)))[0:num]
+	max_char_count = list(reversed(sorted(char_count)))[0:num]
 
-	topfivewords = []
-	for i in max_word_count[0:5]:
+	sortedwords = []
+	for i in max_word_count:
 		for w in set(words):
 			if i == words.count(w):
-				topfivewords.append([i,w])
-	topfivechars = []
-	for i in max_char_count[0:5]:
+				sortedwords.append(w)
+	
+	sortedchars = []
+	for i in max_char_count:
 		for c in set(chars):
 			if i == chars.count(c):
-				topfivechars.append([i,c])
-				
+				sortedchars.append(c)
+		
+	data_w = {"Word": sortedwords[:num],
+		  "Frequency": max_word_count}
+
+	data_c = {"Character": sortedchars[:num],
+		  "Frequency": max_char_count}
 
 
-	return topfivewords, topfivechars
+	return data_w, data_c
 
 
 poem = """For E’er and Hair.
@@ -113,26 +124,13 @@ poem = """For E’er and Hair.
       But you _must_ let me finish my hair!”
 """
 
-f = freq(poem)
-w,c = f[0], f[1]
+data_word = freq(poem)[0]
+data_char = freq(poem)[1]
 
-print("Word \t Frequency")
 
-for i in range(len(w)):
-	print(f"{w[i][1]} \t {w[i][0]}")
-
+print(pandas.DataFrame(data_word))
 print("")
-
-print("Character \t Frequency")
-
-for i in range(len(c)):
-	print(f"{c[i][1]} \t\t {c[i][0]}")
-
-
-
-
-
-
+print(pandas.DataFrame(data_char))
 
 
 
