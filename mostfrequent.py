@@ -4,7 +4,7 @@ import pandas
 import sys
 
 def freq(string):
-	# how words and characters to show?
+	# how many words and characters to show?
 	num = int(sys.argv[1])
 
 	# define the most common punctuation marks
