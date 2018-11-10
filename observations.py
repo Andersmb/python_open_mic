@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-import pandas
 
 obs = {
-    'forest': ['cow', 'sheep', 'sheep', 'pig', 'sheep'],
-    'plains': ['cow', 'horse', 'horse', 'sheep', 'horse'],
-    'jungle': ['cat', 'turtle', 'dinosaur', 'cow', 'ocelot', 'parrot', 'sheep', 'parrot'],
+    'forest': ['cow', 'cow', 'sheep', 'sheep', 'pig', 'sheep'],
+    'plains': ['horse', 'horse', 'sheep', 'horse'],
+    'jungle': ['ocelot', 'parrot', 'sheep', 'parrot'],
 }
 
 # make new dict for number of unique observations in each biome
