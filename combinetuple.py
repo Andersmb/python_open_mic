@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 
 def totuple(a, b):
-	if len(a) != len(b):
-		return "Error: Both lists must have the same lengths!"
-	t = []
-	for i,eli in enumerate(a):
-		for j,elj in enumerate(b):
-			if i==j:
-				t.append((eli,elj))
-	return t
+    assert len(a) == len(b), "Error: Both lists must have the same lengths!"
+    return [(a[i], b[i]) for i in range(len(a))]
 
 list1 = ["This", "is", "a", "test"]
 list2 = ["And", "one", "more", "test"]
