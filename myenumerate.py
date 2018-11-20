@@ -10,5 +10,5 @@ geom = [['C', '42.244746', '18.570778', '59.319684'],
  ['C', '41.154273', '19.649457', '59.114748'],
  ['C', '39.931188', '19.394465', '59.970710']]
 
-for i, atom in my_enumerate(geom):
-    print(i, atom)
+for n in my_enumerate(geom):
+    print(n)
